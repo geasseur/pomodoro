@@ -1,6 +1,3 @@
-*{
-  border: 1px solid #000;
-}
 
 #titre{
   width: 90%;
@@ -16,15 +13,32 @@ h1, h2,h3{
   align-items: center;
   flex-wrap: nowrap;
   flex-direction: row;
+  position: relative;
 }
 
 #exo, #break{
-  width: 130%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
+  border-radius:50%;
+  height: 150px;
+  border: 1px solid #000;
+  margin: 20px 3%;
 }
+
+#remplissageExo, #remplissageBreak{
+  position:absolute;
+  height: 150px;
+  width: 44%;
+  opacity: 0.3;
+  border-radius:50%;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBv9h2t5Mg_CbRJSVsScLiuw1s7tbCWaAKvkUFnitK10MaVQu_3w");
+  border: 1px solid #000;
+  display: none;
+}
+
 
 .exercice img, .break img{
   width: 100px;
