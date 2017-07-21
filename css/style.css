@@ -1,0 +1,31 @@
+*{
+  border: 1px solid #000;
+}
+
+#titre{
+  width: 90%;
+  margin: auto;
+}
+h1, h2,h3{
+  text-align: center;
+}
+
+.exercice, .break{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+#exo, #break{
+  width: 130%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;  
+}
+
+.exercice img, .break img{
+  width: 100px;
+}
