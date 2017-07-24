@@ -43,3 +43,36 @@ h1, h2,h3{
 .exercice img, .break img{
   width: 100px;
 }
+@media (min-width : 600px) {
+  #break, #exo{
+    width: 40%;
+    height: 200px;
+  }
+  #remplissageExo, #remplissageBreak{
+    height: 150px;
+    width: 40%;
+  }
+}
+@media (min-width : 800px) {
+  #break, #exo{
+    width: 30%;
+    height: 200px;
+  }
+}
+@media (min-width : 1000px) {
+  #break, #exo{
+    width: 20%;
+    height: 200px;
+  }
+}
+
+@media (min-width : 1200px) {
+  #break, #exo{
+    width: 18%;
+    height: 200px;
+  }
+  #remplissageExo, #remplissageBreak{
+    height: 150px;
+    width: 20%;
+  }
+}

@@ -1,3 +1,5 @@
+var sauvMinExo = 0;
+var sauvMinBreak = 0;
 var MinuteExo = 0;
 var MinuteBreak = 0;
 var secondes = 60;
@@ -7,8 +9,12 @@ var timeExo;
 var timeBreak;
 
 function lancementDecompteExo(){
+  if (MinuteBreak < 0 || MinuteExo < 0) {
+    alert("erreur");
+    return "";
+  }
   $("#remplissageBreak").slideUp();
-  $("#remplissageExo").slideDown(((MinuteExo+1) * secondes)*1000);
+  $("#remplissageExo").slideDown(((sauvMinExo+1) * secondes)*1000);
   timeExo = setTimeout(function () {
     console.log("test2");
     secondes--;
@@ -18,9 +24,8 @@ function lancementDecompteExo(){
 
 function decompteExo(){
     console.log("test3");
-    if (MinuteExo === 0 && secondes === 0) {
+    if (MinuteExo < 0 && secondes < 0) {
       $("#secondesExo").text(secondes);
-      secondes = 60;
       transition();
         }
     else if (secondes === 0) {
@@ -42,6 +47,12 @@ function decompteExo(){
 }
 
 function lancementDecompteBreak(){
+  if (MinuteBreak < 0 || MinuteExo < 0) {
+      alert("erreur");
+      return "";
+  }
+  $("#secondesBreak").text(secondes);
+  $("#compteurBreak").text(MinuteBreak);
   $("#remplissageExo").slideUp();
   $("#remplissageBreak").slideDown(((MinuteBreak+1) * secondes)*1000);
   timeBreak = setTimeout(function () {
@@ -78,24 +89,21 @@ function decomptebreak(){
 function transition(){
   if (MinuteBreak === 0 && secondes === 0) {
     secondes = 60;
+    MinuteBreak = sauvMinBreak;
     MinuteExo--;
     lancementDecompteExo();
   }
   else if (MinuteExo === 0 && secondes === 0) {
     secondes = 60;
+    MinuteExo = sauvMinExo;
     MinuteBreak--;
     lancementDecompteBreak();
-  }
-  else{
-    $("#remplissageExo").slideUp();
-    $("#remplissageBreak").slideUp();
-    alert("indiquez un temps");
   }
 }
 
 function depart(){
-  $("#compteurBreak").text(MinuteBreak);
-  $("#compteurExo").text(MinuteExo);
+  $("#compteurBreak").text(sauvMinBreak);
+  $("#compteurExo").text(sauvMinExo);
   console.log("test");
 }
 
@@ -103,21 +111,26 @@ $(document).ready(function(){
   depart();
   $("#gaucheBreak").click(function(){
     console.log("test");
+    sauvMinBreak++;
     MinuteBreak++;
+    console.log(MinuteBreak)
     $("#compteurBreak").text(MinuteBreak);
   });
   $("#gaucheExo").click(function(){
     console.log("test");
+    sauvMinExo++;
     MinuteExo++;
     $("#compteurExo").text(MinuteExo);
   });
   $("#droiteBreak").click(function(){
     console.log("test");
+    sauvMinBreak--;
     MinuteBreak--;
     $("#compteurBreak").text(MinuteBreak);
   });
   $("#droiteExo").click(function(){
     console.log("test");
+    sauvMinExo--;
     MinuteExo--;
     $("#compteurExo").text(MinuteExo);
   });
@@ -128,7 +141,6 @@ $(document).ready(function(){
       clearTimeOut(timeExo);
     }
     else {*/
-      testExo = true;
       secondes = 60;
       MinuteExo--;
       lancementDecompteExo();
@@ -137,7 +149,7 @@ $(document).ready(function(){
   $("#break").click(function(){
     console.log("testBreak");
     secondes = 60;
-    MinuteExo--;
+    MinuteBreak--;
     lancementDecompteBreak();
   });
 
