@@ -3,10 +3,6 @@ var sauvMinBreak = 0;
 var MinuteExo = 0;
 var MinuteBreak = 0;
 var secondes = 60;
-var testExo = false;
-var testBreak = false;
-var timeExo;
-var timeBreak;
 
 function lancementDecompteExo(){
   if (MinuteBreak < 0 || MinuteExo < 0) {
@@ -14,7 +10,7 @@ function lancementDecompteExo(){
     return "";
   }
   $("#remplissageBreak").slideUp();
-  $("#remplissageExo").slideDown(((sauvMinExo+1) * secondes)*1000);
+  $("#remplissageExo").slideDown(((MinuteExo+1) * secondes)*1000);
   timeExo = setTimeout(function () {
     console.log("test2");
     secondes--;
@@ -24,7 +20,7 @@ function lancementDecompteExo(){
 
 function decompteExo(){
     console.log("test3");
-    if (MinuteExo < 0 && secondes < 0) {
+    if (MinuteExo === 0 && secondes === 0) {
       $("#secondesExo").text(secondes);
       transition();
         }
@@ -72,7 +68,7 @@ function decomptebreak(){
       secondes = 60;
       $("#secondesBreak").text(secondes);
       MinuteExo--;
-      $("#compteurBreak").text(MinuteExo);
+      $("#compteurBreak").text(MinuteBreak);
       lancementDecompteBreak();
     }
     else if (MinuteBreak < 0) {
@@ -81,20 +77,25 @@ function decomptebreak(){
     else{
       console.log(secondes);
       $("#secondesBreak").text(secondes);
-      $("#compteurBreak").text(MinuteExo);
+      $("#compteurBreak").text(MinuteBreak);
       lancementDecompteBreak();
     }
 }
 
+//Fait la transition entre les deux compteurs, en remettant celui qui vient de ce terminé à son point de départ avant de lancer le suivant.
 function transition(){
   if (MinuteBreak === 0 && secondes === 0) {
     secondes = 60;
     MinuteBreak = sauvMinBreak;
+    $("#compteurBreak").text(sauvMinBreak);
+    $("secondesBreak").text("00");
     MinuteExo--;
     lancementDecompteExo();
   }
   else if (MinuteExo === 0 && secondes === 0) {
     secondes = 60;
+    $("#compteurExo").text(sauvMinExo);
+    $("secondesExo").text("00");
     MinuteExo = sauvMinExo;
     MinuteBreak--;
     lancementDecompteBreak();
