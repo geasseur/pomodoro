@@ -21,8 +21,8 @@ function decompteExo(){
     if (MinuteExo === 0 && secondes === 0) {
       $("#secondesExo").text(secondes);
       secondes = 60;
-      lancementDecompteBreak();
-    }
+      transition();
+        }
     else if (secondes === 0) {
       secondes = 60;
       $("#secondesExo").text(secondes);
@@ -30,9 +30,13 @@ function decompteExo(){
       $("#compteurExo").text(MinuteExo);
       lancementDecompteExo();
     }
+    else if (MinuteExo < 0) {
+      transition();
+    }
     else{
       console.log(secondes);
       $("#secondesExo").text(secondes);
+      $("#compteurExo").text(MinuteExo);
       lancementDecompteExo();
     }
 }
@@ -49,10 +53,9 @@ function lancementDecompteBreak(){
 
 function decomptebreak(){
     console.log("test3");
-    if (MinuteExo === 0 && secondes === 0) {
+    if (MinuteBreak === 0 && secondes === 0) {
       $("#secondesBreak").text(secondes);
-      secondes = 60;
-      lancementDecompteExo();
+      transition();
     }
     else if (secondes === 0) {
       secondes = 60;
@@ -61,12 +64,33 @@ function decomptebreak(){
       $("#compteurBreak").text(MinuteExo);
       lancementDecompteBreak();
     }
+    else if (MinuteBreak < 0) {
+      transition();
+    }
     else{
       console.log(secondes);
-
       $("#secondesBreak").text(secondes);
+      $("#compteurBreak").text(MinuteExo);
       lancementDecompteBreak();
     }
+}
+
+function transition(){
+  if (MinuteBreak === 0 && secondes === 0) {
+    secondes = 60;
+    MinuteExo--;
+    lancementDecompteExo();
+  }
+  else if (MinuteExo === 0 && secondes === 0) {
+    secondes = 60;
+    MinuteBreak--;
+    lancementDecompteBreak();
+  }
+  else{
+    $("#remplissageExo").slideUp();
+    $("#remplissageBreak").slideUp();
+    alert("indiquez un temps");
+  }
 }
 
 function depart(){
@@ -99,17 +123,21 @@ $(document).ready(function(){
   });
   $("#exo").click(function(){
     console.log("testExo");
-    if (testExo == true) {
+    /*if (testExo == true) {
       testExo = false;
       clearTimeOut(timeExo);
     }
-    else {
+    else {*/
       testExo = true;
+      secondes = 60;
+      MinuteExo--;
       lancementDecompteExo();
-   }
+   //}
   });
   $("#break").click(function(){
     console.log("testBreak");
+    secondes = 60;
+    MinuteExo--;
     lancementDecompteBreak();
   });
 
