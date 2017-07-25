@@ -4,6 +4,8 @@ var MinuteExo = 0;
 var MinuteBreak = 0;
 var secondes = 60;
 
+
+//verifie que l'utilisateur a bien mit des minutes dans les minuteurs et si oui, lance le décompte d'exo
 function lancementDecompteExo(){
   if (MinuteBreak < 0 || MinuteExo < 0) {
     alert("erreur");
@@ -42,6 +44,8 @@ function decompteExo(){
     }
 }
 
+
+//pareil mais pour break
 function lancementDecompteBreak(){
   if (MinuteBreak < 0 || MinuteExo < 0) {
       alert("erreur");
@@ -101,13 +105,14 @@ function transition(){
     lancementDecompteBreak();
   }
 }
-
+//met les variable de base dans le html
 function depart(){
   $("#compteurBreak").text(sauvMinBreak);
   $("#compteurExo").text(sauvMinExo);
   console.log("test");
 }
 
+//permet de lancer le décompte ou d'en modifier la durée
 $(document).ready(function(){
   depart();
   $("#gaucheBreak").click(function(){
